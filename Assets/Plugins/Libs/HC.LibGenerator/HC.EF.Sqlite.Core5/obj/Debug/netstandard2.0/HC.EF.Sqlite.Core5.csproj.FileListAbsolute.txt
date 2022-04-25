@@ -1,0 +1,13 @@
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\bin\Debug\netstandard2.0\HC.EF.Sqlite.Core5.deps.json
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\bin\Debug\netstandard2.0\HC.EF.Sqlite.Core5.dll
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\bin\Debug\netstandard2.0\HC.EF.Sqlite.Core5.pdb
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\bin\Debug\netstandard2.0\HC.Data.dll
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\bin\Debug\netstandard2.0\HC.Data.pdb
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\obj\Debug\netstandard2.0\HC.EF.Sqlite.Core5.csproj.AssemblyReference.cache
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\obj\Debug\netstandard2.0\HC.EF.Sqlite.Core5.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\obj\Debug\netstandard2.0\HC.EF.Sqlite.Core5.AssemblyInfoInputs.cache
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\obj\Debug\netstandard2.0\HC.EF.Sqlite.Core5.AssemblyInfo.cs
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\obj\Debug\netstandard2.0\HC.EF.Sqlite.Core5.csproj.CoreCompileInputs.cache
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\obj\Debug\netstandard2.0\HC.EF.Sqlite.Core5.csproj.CopyComplete
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\obj\Debug\netstandard2.0\HC.EF.Sqlite.Core5.dll
+C:\Repositories\HC\HC.LibGenerator\HC.EF.Sqlite.Core5\obj\Debug\netstandard2.0\HC.EF.Sqlite.Core5.pdb

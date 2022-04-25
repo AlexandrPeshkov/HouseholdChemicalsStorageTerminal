@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "faG39yPIrQJU4s9eZxXSllTTHv8hVTXpmkLaijYU/2WeVgwPLhpegfqznQOYb2PDxf22TxU0DrPKOfI641UcFQ==",
+  "success": true,
+  "projectFilePath": "C:\\Repositories\\HC\\HC.LibGenerator\\HC.Data\\HC.Data.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alexandr Peshkov\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Alexandr Peshkov\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Alexandr Peshkov\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
