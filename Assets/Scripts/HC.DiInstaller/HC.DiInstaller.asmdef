@@ -1,10 +1,11 @@
 {
-    "name": "HC.Core",
-    "rootNamespace": "HC.Core",
+    "name": "HC.DiInstaller",
+    "rootNamespace": "HC.DiInstaller",
     "references": [
-        "Zenject",
+        "HC.Core",
         "HC.DataAccess",
-        "HC.Interfaces"
+        "HC.Interfaces",
+        "Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

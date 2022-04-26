@@ -52,14 +52,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\HC.DomainModels\Entities\NewBehaviourScript.cs" />
-     <Compile Include="Assets\Scripts\HC.DomainModels\Interfaces\IDbEntity.cs" />
-     <Compile Include="Assets\Scripts\HC.DomainModels\Entities\BaseDbEntity.cs" />
-     <Compile Include="Assets\Scripts\HC.DomainModels\Entities\Product.cs" />
-     <Compile Include="Assets\Scripts\HC.DomainModels\Entities\Supplier.cs" />
-     <Compile Include="Assets\Scripts\HC.DomainModels\Entities\ConsignmentNote.cs" />
-     <Compile Include="Assets\Scripts\HC.DomainModels\Entities\StorageProduct.cs" />
-     <None Include="Assets\Scripts\HC.DomainModels\HC.DomainModels.asmdef" />
+     <Compile Include="Assets\Scripts\HC.Domain\Entities\ConsignmentNote.cs" />
+     <Compile Include="Assets\Scripts\HC.Domain\Entities\StorageProduct.cs" />
+     <Compile Include="Assets\Scripts\HC.Domain\Entities\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\HC.Domain\Entities\Supplier.cs" />
+     <Compile Include="Assets\Scripts\HC.Domain\Entities\BaseDbEntity.cs" />
+     <Compile Include="Assets\Scripts\HC.Domain\Entities\Product.cs" />
+     <Compile Include="Assets\Scripts\HC.Domain\Interfaces\IDbEntity.cs" />
+     <None Include="Assets\Scripts\HC.Domain\HC.Domain.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -294,35 +294,143 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Plastic.Newtonsoft.Json">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Plastic.Antlr3.Runtime">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="unityplastic">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
- </Reference>
- <Reference Include="log4netPlastic">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.unity.collab-proxy@1.15.7/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
- </Reference>
- <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
- </Reference>
- <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+ <Reference Include="Zenject-usage">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/Source/Usage/Zenject-usage.dll</HintPath>
  </Reference>
  <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
  </Reference>
- <Reference Include="Zenject-usage">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/Source/Usage/Zenject-usage.dll</HintPath>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+ </Reference>
+ <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
  <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Library/PackageCache/com.svermeulen.extenject@9.2.0-stcf3/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.DependencyModel">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.DependencyModel.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.EntityFrameworkCore">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.EntityFrameworkCore.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Options">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Options.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Primitives">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Logging">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Logging.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.DotNet.PlatformAbstractions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.EntityFrameworkCore.Abstractions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Caching.Memory">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Caching.Memory.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Configuration.Binder">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Configuration">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Configuration.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.EntityFrameworkCore.Relational">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Data.Sqlite">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Data.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.DependencyInjection">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.DependencyInjection.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.Caching.Abstractions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.EntityFrameworkCore.Sqlite">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.EntityFrameworkCore.Sqlite.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+ </Reference>
+ <Reference Include="SQLitePCLRaw.batteries_v2">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/SQLitePCLRaw.batteries_v2.dll</HintPath>
+ </Reference>
+ <Reference Include="SQLitePCLRaw.core">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/SQLitePCLRaw.core.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Buffers">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Buffers.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ComponentModel.Annotations">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.ComponentModel.Annotations.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Collections.Immutable">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Collections.Immutable.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading.Tasks.Extensions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Threading.Tasks.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.DiagnosticSource">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Diagnostics.DiagnosticSource.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Numerics.Vectors">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Numerics.Vectors.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Memory">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Memory.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.CompilerServices.Unsafe">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Dynamic.Runtime">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Dynamic.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="System.AppContext">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.AppContext.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Linq.Expressions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Linq.Expressions.dll</HintPath>
+ </Reference>
+ <Reference Include="Remotion.Linq">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Remotion.Linq.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Interactive.Async">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Interactive.Async.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Serialization.Primitives">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Runtime.Serialization.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.ReaderWriter">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Xml.ReaderWriter.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Reflection.TypeExtensions">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Reflection.TypeExtensions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Linq.Queryable">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Linq.Queryable.dll</HintPath>
+ </Reference>
+ <Reference Include="SQLitePCLRaw.batteries_green">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/SQLitePCLRaw.batteries_green.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.XDocument">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Xml.XDocument.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading">
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Assets/Plugins/Libs/System.Threading.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -676,13 +784,17 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Repositories/HC/HouseholdChemicalsStorageTerminal/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Development/HC/HouseholdChemicalsStorageTerminal/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="HC.DataAccess.csproj">
+      <Project>{f52c683e-5c93-f21c-702b-ed6337dc231a}</Project>
+      <Name>HC.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,11 +1,7 @@
 {
-    "name": "HC.Core",
-    "rootNamespace": "HC.Core",
-    "references": [
-        "Zenject",
-        "HC.DataAccess",
-        "HC.Interfaces"
-    ],
+    "name": "HC.DataAccess",
+    "rootNamespace": "HC.DataAccess",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
