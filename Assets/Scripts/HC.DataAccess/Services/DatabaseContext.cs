@@ -64,15 +64,15 @@ namespace HC.DataAccess.Logic
                 if (!Directory.Exists(_dpFolderPath))
                 {
                     Directory.CreateDirectory(_dpFolderPath);
+                } b
+
+                using (var fileStream = new FileStream(_dbPath,
+                           FileMode.OpenOrCreate,
+                           FileAccess.ReadWrite,
+                           FileShare.Delete);)
+                {
+                    
                 }
-
-                var fileStream = new FileStream(_dbPath,
-                    FileMode.OpenOrCreate,
-                    FileAccess.ReadWrite,
-                    FileShare.Delete);
-                fileStream.Dispose();
-
-                //File.Create(_dbPath);
             }
         }
 
