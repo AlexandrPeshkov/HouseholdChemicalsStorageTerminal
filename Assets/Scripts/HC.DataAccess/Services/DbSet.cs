@@ -24,6 +24,11 @@ namespace HC.DataAccess.Logic
 
         public abstract void Remove(int id);
 
-        public abstract Task EnsureCreated();
+        public async Task EnsureCreated()
+        {
+            await _dbContext.ExecuteNonQuery(CreateTableIfNotExistSql());
+        }
+
+        protected abstract string CreateTableIfNotExistSql();
     }
 }

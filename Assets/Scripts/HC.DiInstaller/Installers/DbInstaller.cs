@@ -17,7 +17,11 @@ namespace HC.DiInstaller
 
         private void BindDbSets()
         {
-            Container.BindInterfacesTo<ProductDbSet>().AsSingle();
+            Container.BindInterfacesTo<CityDbSet>().AsSingle();
+            Container.BindInterfacesTo<UserDbSet>().AsSingle();
+            Container.BindInterfacesTo<RateDbSet>().AsSingle();
+            Container.BindInterfacesTo<CallLogDbSet>().AsSingle();
+            Container.BindInterfacesTo<InvoiceDbSet>().AsSingle();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace HC.DataAccess.Logic
 {
     public class DatabaseContext
     {
-        public const string DbFolder = "../../DB~";
+        //public const string DbFolder = "../../DB~";
 
         public const string DbName = "HC.db";
 
@@ -17,13 +17,13 @@ namespace HC.DataAccess.Logic
 
         private readonly string _dbPath;
 
-        private readonly string _dpFolderPath;
+        //private readonly string _dpFolderPath;
 
         public DatabaseContext()
         {
-            //_dbPath = Path.Combine(Application.persistentDataPath, DbName);
-            _dpFolderPath = Path.Combine(Application.dataPath, DbFolder);
-            _dbPath = Path.Combine(_dpFolderPath, DbName);
+            _dbPath = Path.Combine(Application.persistentDataPath, DbName);
+            //_dpFolderPath = Path.Combine(Application.dataPath, DbFolder);
+            //_dbPath = Path.Combine(_dpFolderPath, DbName);
             //_dbPath = $"{Application.dataPath}/../../{DbName}";
             _connectionString = $"URI=file:{_dbPath}";
 
@@ -37,16 +37,14 @@ namespace HC.DataAccess.Logic
             {
                 try
                 {
-                    File.Delete(_dbPath);
-                    // var fs = new FileStream(_dbPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 4096, FileOptions.DeleteOnClose);
-                    //
-                    // // FileStream fileStream = new FileStream(_dbPath, 
-                    // //     FileMode.Open, 
-                    // //     FileAccess.ReadWrite, 
-                    // //     FileShare.Delete);
-                    // // File.Delete(_dbPath);
-                    // fs.Close();
-                    // fs.Dispose();
+                    var sql = string.Concat(new[]
+                    {
+                        "PRAGMA writable_schema = 1;",
+                        "delete from sqlite_master where type in ('table', 'index', 'trigger');",
+                        "PRAGMA writable_schema = 0;",
+                        "VACUUM;"
+                    });
+                    ExecuteNonQuery(sql).GetAwaiter();
                 }
                 catch (IOException e)
                 {
@@ -61,46 +59,25 @@ namespace HC.DataAccess.Logic
         {
             if (!File.Exists(_dbPath))
             {
-                if (!Directory.Exists(_dpFolderPath))
-                {
-                    Directory.CreateDirectory(_dpFolderPath);
-                } b
-
-                using (var fileStream = new FileStream(_dbPath,
-                           FileMode.OpenOrCreate,
-                           FileAccess.ReadWrite,
-                           FileShare.Delete);)
-                {
-                    
-                }
+                File.Create(_dbPath);
             }
         }
 
-        public Task ExecuteNonQuery(string sqlCommand)
+        public async Task ExecuteNonQuery(string sqlCommand)
         {
-            //using (IDbConnection connection = new SqliteConnection(_connectionString))
-            IDbConnection connection = new SqliteConnection(_connectionString);
-            connection.Open();
-            var command = connection.CreateCommand();
-            command.CommandText = sqlCommand;
-            command.ExecuteReader();
-            connection.Close();
-
-            return Task.CompletedTask;
-
             try
             {
-                // await Task.Run(() =>
-                // {
-                //     using (IDbConnection connection = new SqliteConnection(_connectionString))
-                //     {
-                //         connection.Open();
-                //         var command = connection.CreateCommand();
-                //         command.CommandText = sqlCommand;
-                //         command.ExecuteReader();
-                //         connection.Close();
-                //     }
-                // });
+                await Task.Run(() =>
+                {
+                    using (IDbConnection connection = new SqliteConnection(_connectionString))
+                    {
+                        connection.Open();
+                        var command = connection.CreateCommand();
+                        command.CommandText = sqlCommand;
+                        command.ExecuteReader();
+                        //connection.Close();
+                    }
+                });
             }
             catch (Exception e)
             {

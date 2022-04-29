@@ -1,10 +1,12 @@
+using DefaultNamespace;
 using HC.DataAccess.Interfaces;
-using HC.Domain.Entities;
 
 namespace HC.Interfaces.Services
 {
     public interface IEntityRepository
     {
-        public IDbSet<Product> Products { get; }
+        public IDbSet<City> Cities { get; }
+
+        public IDbSet<User> Users { get; }
     }
 }

@@ -5,6 +5,7 @@
         "HC.Core",
         "HC.DataAccess",
         "HC.Interfaces",
+        "HC.UI",
         "Zenject"
     ],
     "includePlatforms": [],
