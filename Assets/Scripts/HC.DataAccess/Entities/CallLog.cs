@@ -1,7 +1,7 @@
 ﻿using System;
 using HC.DataAccess.Models;
 
-namespace DefaultNamespace
+namespace HC.DataAccess
 {
     public class CallLog : BaseDbEntity
     {
@@ -9,7 +9,7 @@ namespace DefaultNamespace
 
         public int UserIdTo { get; set; }
 
-        public decimal Duration { get; set; }
+        public float Duration { get; set; }
 
         public DateTime Date { get; set; }
     }

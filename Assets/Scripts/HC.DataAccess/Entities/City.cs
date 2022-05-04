@@ -1,10 +1,10 @@
 ﻿using HC.DataAccess.Models;
 
-namespace DefaultNamespace
+namespace HC.DataAccess
 {
     public class City : BaseDbEntity
     {
-        public string Code { get; set; }
+        public int Code { get; set; }
 
         public string Name { get; set; }
     }

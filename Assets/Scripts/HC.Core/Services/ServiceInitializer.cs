@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BS.UI.Services;
 using HC.Interfaces.Services;
 using Zenject;
 
@@ -10,9 +11,12 @@ namespace HC.Core
     {
         private readonly ICollection<IAsyncInitializable> _services;
 
-        public ServiceInitializer(IEnumerable<IAsyncInitializable> services)
+        private readonly BusyIndicator _busyIndicator;
+
+        public ServiceInitializer(IEnumerable<IAsyncInitializable> services, BusyIndicator busyIndicator)
         {
             _services = services.ToList();
+            _busyIndicator = busyIndicator;
         }
 
         public async Task InitializeAll()
@@ -27,7 +31,7 @@ namespace HC.Core
 
         public void Initialize()
         {
-            InitializeAll();
+            _busyIndicator.Wait( InitializeAll(), "Инициализация БД");
         }
     }
 }

@@ -2,7 +2,8 @@
     "name": "HC.Interfaces",
     "rootNamespace": "HC.Interfaces",
     "references": [
-        "HC.DataAccess"
+        "HC.DataAccess",
+        "HC.Data"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

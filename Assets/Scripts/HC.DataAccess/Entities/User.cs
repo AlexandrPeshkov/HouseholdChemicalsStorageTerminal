@@ -1,6 +1,6 @@
 ﻿using HC.DataAccess.Models;
 
-namespace DefaultNamespace
+namespace HC.DataAccess
 {
     public class User : BaseDbEntity
     {

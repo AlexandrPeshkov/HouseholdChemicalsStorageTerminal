@@ -1,3 +1,4 @@
+using HC.Core;
 using HC.Core.Logic;
 using HC.DataAccess.Logic;
 using HC.DataAccess.Logic.DbSets;
@@ -11,6 +12,7 @@ namespace HC.DiInstaller
         {
             Container.Bind<DatabaseContext>().AsSingle();
             Container.BindInterfacesTo<EntityRepository>().AsSingle();
+            Container.BindInterfacesTo<DatabaseSeedService>().AsSingle();
 
             BindDbSets();
         }

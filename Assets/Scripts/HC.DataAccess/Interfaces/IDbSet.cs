@@ -1,17 +1,21 @@
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace HC.DataAccess.Interfaces
 {
     public interface IDbSet<TEntity> where TEntity : class, IDbEntity
     {
-        ICollection<TEntity> ReadAll();
+        Task<TEntity> FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
 
-        TEntity Get(int key);
+        Task<IEnumerable<TEntity>> Where(Func<TEntity, bool> predicate);
 
-        void WriteOrUpdate(TEntity entity);
+        Task<TEntity> Create(TEntity newEntity);
 
-        void Remove(int id);
+        Task<TEntity> Get(int id);
+
+        Task<IReadOnlyCollection<TEntity>> All();
 
         Task EnsureCreated();
     }

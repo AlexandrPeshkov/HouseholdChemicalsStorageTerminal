@@ -1,12 +1,12 @@
 ﻿using HC.DataAccess.Models;
 
-namespace DefaultNamespace
+namespace HC.DataAccess
 {
     public class Rate : BaseDbEntity
     {
-        public string CityCodeFrom { get; set; }
+        public int CityIdFrom { get; set; }
 
-        public string CityCodeTo { get; set; }
+        public int CityIdTo { get; set; }
 
         public float CostPerMinute { get; set; }
     }

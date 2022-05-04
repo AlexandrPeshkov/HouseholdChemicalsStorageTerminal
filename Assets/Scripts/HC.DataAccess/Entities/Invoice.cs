@@ -1,6 +1,6 @@
 ﻿using HC.DataAccess.Models;
 
-namespace DefaultNamespace
+namespace HC.DataAccess
 {
     /// <summary>
     /// Счёт
@@ -9,10 +9,10 @@ namespace DefaultNamespace
     {
         public int CallLogId { get; set; }
         
-        /// <summary>
-        /// Суммарная стоимость
-        /// </summary>
-        public decimal Cost { get; set; }
+        // /// <summary>
+        // /// Суммарная стоимость
+        // /// </summary>
+        // public decimal Cost { get; set; }
         
         /// <summary>
         /// Счет оплачен

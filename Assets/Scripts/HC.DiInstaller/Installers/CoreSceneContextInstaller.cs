@@ -1,5 +1,9 @@
-﻿using HC.Core;
+﻿using BS.UI.Services;
+using HC.Core;
+using HC.Core.Services;
+using HC.Interfaces.Services;
 using HC.UI.Elements;
+using HC.UI.Elements.Popups;
 using UnityEngine;
 using Zenject;
 
@@ -9,18 +13,32 @@ namespace HC.DiInstaller
     {
         [SerializeField]
         private UserCallLogsTable _userCallLogsTable;
+
+        [SerializeField]
+        private BusyIndicator _busyIndicator;
         
+        [SerializeField]
+        private PaymentPopup _paymentPopup;
+
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<ServiceInitializer>().AsSingle();
+            BindServices();
             BindUI();
-            
+
             DbInstaller.Install(Container);
         }
 
         private void BindUI()
         {
-            Container.BindInstance(_userCallLogsTable).AsSingle();
+            Container.BindInterfacesAndSelfTo<UserCallLogsTable>().FromInstance(_userCallLogsTable).AsSingle();
+            Container.BindInstance(_busyIndicator).AsSingle();
+            Container.BindInstance(_paymentPopup).AsSingle();
+        }
+
+        private void BindServices()
+        {
+            Container.BindInterfacesTo<ServiceInitializer>().AsSingle();
+            Container.Bind<IPaymentService>().To<PaymentService>().AsSingle();
         }
     }
 }

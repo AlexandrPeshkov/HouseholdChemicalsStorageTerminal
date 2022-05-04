@@ -5,5 +5,6 @@
     /// </summary>
     public interface IDbEntity
     {
+        int Id { get; set; }
     }
 }

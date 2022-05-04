@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using DefaultNamespace;
-
-namespace HC.DataAccess.Logic.DbSets
+﻿namespace HC.DataAccess.Logic.DbSets
 {
     public class CallLogDbSet : DbSet<CallLog>
     {
@@ -11,26 +8,6 @@ namespace HC.DataAccess.Logic.DbSets
 
         public CallLogDbSet(DatabaseContext databaseContext) : base(databaseContext)
         {
-        }
-
-        public override ICollection<CallLog> ReadAll()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override CallLog Get(int key)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void WriteOrUpdate(CallLog entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Remove(int id)
-        {
-            throw new System.NotImplementedException();
         }
 
         protected override string CreateTableIfNotExistSql()
@@ -45,6 +22,11 @@ namespace HC.DataAccess.Logic.DbSets
                 $"FOREIGN KEY({nameof(CallLog.UserIdFrom)}) REFERENCES {UserDbSet.Table}({nameof(User.Id)})" +
                 $"FOREIGN KEY({nameof(CallLog.UserIdTo)}) REFERENCES {UserDbSet.Table}({nameof(User.Id)})" +
                 ");";
+        }
+
+        protected override string SelectWhereSql()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

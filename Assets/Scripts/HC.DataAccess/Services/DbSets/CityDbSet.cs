@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DefaultNamespace;
 
 namespace HC.DataAccess.Logic.DbSets
 {
@@ -15,33 +12,19 @@ namespace HC.DataAccess.Logic.DbSets
         {
         }
 
-        public override ICollection<City> ReadAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override City Get(int key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void WriteOrUpdate(City entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Remove(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override string CreateTableIfNotExistSql()
         {
             return $"CREATE TABLE IF NOT EXISTS \"{TableName}\" (" +
                 $"\"{nameof(City.Id)}\"	INTEGER NOT NULL UNIQUE," +
+                $"\"{nameof(City.Code)}\"INTEGER NOT NULL," +
                 $"\"{nameof(City.Name)}\" TEXT NOT NULL," +
                 $"PRIMARY KEY(\"{nameof(City.Id)}\" AUTOINCREMENT)" +
                 ");";
+        }
+
+        protected override string SelectWhereSql()
+        {
+            throw new NotImplementedException();
         }
     }
 }
