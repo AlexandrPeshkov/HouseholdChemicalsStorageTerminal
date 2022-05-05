@@ -6,7 +6,9 @@
         "Unity.TextMeshPro",
         "Zenject",
         "HC.Data",
-        "UniTask"
+        "UniTask",
+        "UniRx",
+        "HC.Common.Interfaces"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

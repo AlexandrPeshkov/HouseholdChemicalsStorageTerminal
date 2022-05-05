@@ -20,7 +20,9 @@ namespace HC.Core.Services
 
         public async Task Pay(int invoiceId)
         {
-            //TODO: Pay
+            var invoiceModel = await _entityRepository.Invoices.Get(invoiceId);
+            invoiceModel.IsPaid = true;
+            await _entityRepository.Invoices.Update(invoiceModel);
         }
 
         public async Task<IReadOnlyCollection<InvoiceViewModel>> GetAllInvoices()

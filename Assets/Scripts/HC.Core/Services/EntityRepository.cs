@@ -30,7 +30,7 @@ namespace HC.Core.Logic
             Invoices = invoices;
         }
 
-        public int Order => 0;
+        public int Order => 2;
 
         public bool IsReady { get; private set; }
 

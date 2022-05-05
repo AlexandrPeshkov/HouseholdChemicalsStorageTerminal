@@ -17,6 +17,8 @@ namespace HC.DataAccess.Interfaces
 
         Task<IReadOnlyCollection<TEntity>> All();
 
+        Task Update(TEntity entity);
+
         Task EnsureCreated();
     }
 }

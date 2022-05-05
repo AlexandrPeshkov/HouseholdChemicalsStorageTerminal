@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Plugins/UniTask/UniTask/Assets/Scenes/SandboxMain.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/StorageScene.unity
+    guid: 094af8c0444167249933a6716c4e9684
   m_configObjects: {}

@@ -1,7 +1,10 @@
 {
     "name": "HC.DataAccess",
     "rootNamespace": "HC.DataAccess",
-    "references": [],
+    "references": [
+        "UniRx",
+        "HC.Common.Interfaces"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

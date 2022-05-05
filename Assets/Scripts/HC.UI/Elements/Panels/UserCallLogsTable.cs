@@ -6,8 +6,8 @@ using BS.UI.Services;
 using Cysharp.Threading.Tasks;
 using HC.Interfaces.Services;
 using HC.UI.ViewModels;
+using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace HC.UI.Elements
@@ -30,38 +30,31 @@ namespace HC.UI.Elements
         private Transform _rowsParent;
 
         [SerializeField]
-        private Toggle _toggle;
+        private CallLogsPanelFilter _filter;
 
         private List<CallLogRowView> _currentRows;
 
-        public int Order => 3;
+        private bool _inProcess;
+
+        public int Order => 10;
 
         public bool IsReady { get; private set; }
-
-        private readonly FilterConfig _filter = new FilterConfig()
-        {
-            OnlyNonPaid = false,
-            OrderByDate = true
-        };
-
-        public class FilterConfig
-        {
-            public bool OnlyNonPaid { get; set; }
-
-            public bool OrderByDate { get; set; }
-        }
 
         public async Task Initialize()
         {
             IsReady = true;
             RunPresentation("Заполняем счета");
+            _filter.Config.Subscribe(OnConfigChanged).AddTo(this);
         }
 
         private void Awake()
         {
             _currentRows = new List<CallLogRowView>();
-            _toggle.isOn = _filter.OnlyNonPaid;
-            _toggle.onValueChanged.AddListener(OnPaidFilterChanged);
+        }
+
+        private void OnConfigChanged(FilterConfig filterConfig)
+        {
+            RunPresentation("Обновляем данные");
         }
 
         private void RunPresentation(string taskName)
@@ -71,11 +64,18 @@ namespace HC.UI.Elements
 
         private async UniTask Present()
         {
+            if (_inProcess)
+            {
+                return;
+            }
+
+            _inProcess = true;
+
             try
             {
                 Clear();
 
-                var collection = await GetLogsByFilter(_filter);
+                var collection = await GetLogsByFilter(_filter.Config.Value);
 
                 foreach (var invoiceViewModel in collection)
                 {
@@ -93,6 +93,10 @@ namespace HC.UI.Elements
 #endif
                 throw;
             }
+            finally
+            {
+                _inProcess = false;
+            }
         }
 
         private async Task<IEnumerable<InvoiceViewModel>> GetLogsByFilter(FilterConfig filterConfig)
@@ -109,6 +113,19 @@ namespace HC.UI.Elements
                 result = result.Where(x => !x.Status);
             }
 
+            if (!string.IsNullOrWhiteSpace(filterConfig.UerNameMask))
+            {
+                var mask = filterConfig.UerNameMask;
+
+                result = result.Where(x =>
+                    x.UserFrom.Contains(mask)
+                    || x.UserTo.Contains(mask)
+                    || x.UserFromNumber.Contains(mask)
+                    || x.UserToNumber.Contains(mask)
+                    || x.CityFrom.Contains(mask)
+                    || x.CityTo.Contains(mask));
+            }
+
             return result;
         }
 
@@ -117,13 +134,7 @@ namespace HC.UI.Elements
             RunPresentation("Обновляем данные");
         }
 
-        private void OnPaidFilterChanged(bool onlyNotPaid)
-        {
-            _filter.OnlyNonPaid = onlyNotPaid;
-            RunPresentation("Обновляем данные");
-        }
-
-        public void Clear()
+        private void Clear()
         {
             foreach (var row in _currentRows)
             {
@@ -131,6 +142,11 @@ namespace HC.UI.Elements
             }
 
             _currentRows.Clear();
+        }
+
+        private void OnDestroy()
+        {
+            Clear();
         }
     }
 }

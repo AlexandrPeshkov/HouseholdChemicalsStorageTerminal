@@ -9,11 +9,6 @@ namespace HC.DataAccess
     {
         public int CallLogId { get; set; }
         
-        // /// <summary>
-        // /// Суммарная стоимость
-        // /// </summary>
-        // public decimal Cost { get; set; }
-        
         /// <summary>
         /// Счет оплачен
         /// </summary>

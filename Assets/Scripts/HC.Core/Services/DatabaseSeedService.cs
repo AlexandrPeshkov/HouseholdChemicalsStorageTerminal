@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using HC.Core.Extensions;
 using HC.Core.Services;
 using HC.DataAccess;
+using HC.DataAccess.Interfaces;
 using HC.Interfaces.Services;
 using UnityEngine;
 using Random = System.Random;
@@ -14,19 +15,27 @@ namespace HC.Core
     {
         private readonly IEntityRepository _entityRepository;
 
+        private readonly IDbConfigProvider _configProvider;
+
         private Random Random => ThreadSafeRandom.Random;
 
-        public int Order => 1;
+        public int Order => 3;
 
         public bool IsReady { get; private set; }
 
-        public DatabaseSeedService(IEntityRepository entityRepository)
+        public DatabaseSeedService(IEntityRepository entityRepository, IDbConfigProvider configProvider)
         {
             _entityRepository = entityRepository;
+            _configProvider = configProvider;
         }
 
         public async Task Initialize()
         {
+            if (!_configProvider.AppConfig.Value.ClearAndSeedDb)
+            {
+                return;
+            }
+
             try
             {
                 await SeedCities();
@@ -34,7 +43,7 @@ namespace HC.Core
                 await SeedUsers();
                 await SeedCallLog();
                 await SeedInvoices();
-                await Task.Delay(1000 * 3);
+                await Task.Delay(1000);
 
                 Debug.LogWarning("Сидирование завершено");
                 IsReady = true;

@@ -24,11 +24,11 @@ namespace HC.DataAccess.Logic
         public async Task<TEntity> FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
             var predicateStr = SqlReaderExtensions.ParsePredicate(predicate);
-            
+
             var sql = $"SELECT * FROM {TableName}" +
                 $"\nWHERE {predicateStr}" +
                 $"\nLIMIT 1";
-            
+
             var table = await _dbContext.ExecuteResultQuery<TEntity>(sql);
             var entity = table.FirstOrDefault();
             return entity;
@@ -70,6 +70,19 @@ namespace HC.DataAccess.Logic
             var sql = $"SELECT * FROM {TableName}";
             var table = await _dbContext.ExecuteResultQuery<TEntity>(sql);
             return table;
+        }
+
+        public async Task Update(TEntity entity)
+        {
+            var queryProperties = SqlReaderExtensions.ParseToQueryArgs(entity);
+
+            var setExpression = string.Join(",\n", queryProperties.Select(pair => $"{pair.Key} = {pair.Value}"));
+
+            var sql = $"UPDATE {TableName} \n" +
+                $"SET {setExpression} \n" +
+                $"WHERE {nameof(IDbEntity.Id)} = {entity.Id}";
+
+            await _dbContext.ExecuteNonQuery(sql);
         }
 
         public async Task<int> LastInsertedId()

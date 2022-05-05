@@ -4,9 +4,9 @@ namespace HC.Interfaces.Services
 {
     public interface IAsyncInitializable
     {
-        public int Order { get; }
+        int Order { get; }
 
-        public bool IsReady { get; }
+        bool IsReady { get; }
 
         Task Initialize();
     }

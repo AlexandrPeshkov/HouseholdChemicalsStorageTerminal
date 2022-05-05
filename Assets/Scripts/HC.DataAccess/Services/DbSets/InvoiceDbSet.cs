@@ -12,7 +12,6 @@
         {
             return $"CREATE TABLE IF NOT EXISTS {TableName} (" +
                 $"{nameof(Invoice.Id)}	INTEGER NOT NULL UNIQUE," +
-                //$"{nameof(Invoice.Cost)} REAL NOT NULL," +
                 $"{nameof(Invoice.IsPaid)} INTEGER NOT NULL," +
                 $"{nameof(Invoice.CallLogId)} INTEGER NOT NULL," +
                 $"PRIMARY KEY({nameof(Invoice.Id)} AUTOINCREMENT)," +

@@ -39,7 +39,7 @@ namespace HC.UI.Elements.Popups
 
         private async Task PaymentTask()
         {
-            await Task.Delay(100 * 13);
+            await Task.Delay(900);
             await _paymentService.Pay(_invoiceId);
             gameObject.SetActive(false);
             PaymentCompleted?.Invoke(_invoiceId);

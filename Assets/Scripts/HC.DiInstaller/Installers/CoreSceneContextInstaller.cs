@@ -16,7 +16,7 @@ namespace HC.DiInstaller
 
         [SerializeField]
         private BusyIndicator _busyIndicator;
-        
+
         [SerializeField]
         private PaymentPopup _paymentPopup;
 
@@ -39,6 +39,7 @@ namespace HC.DiInstaller
         {
             Container.BindInterfacesTo<ServiceInitializer>().AsSingle();
             Container.Bind<IPaymentService>().To<PaymentService>().AsSingle();
+            Container.BindInterfacesTo<AppConfigProvider>().AsSingle();
         }
     }
 }

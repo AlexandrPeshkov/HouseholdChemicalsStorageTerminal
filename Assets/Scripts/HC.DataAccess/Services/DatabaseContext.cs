@@ -5,31 +5,45 @@ using System.Reflection;
 using System.Threading.Tasks;
 using HC.DataAccess.HC.DataAccess.Extensions;
 using HC.DataAccess.Interfaces;
+using HC.Interfaces.Services;
 using Mono.Data.Sqlite;
 using UnityEngine;
 
 namespace HC.DataAccess.Logic
 {
-    public class DatabaseContext
+    public class DatabaseContext : IAsyncInitializable
     {
-        public const string DbName = "HC.db";
+        private const string DbName = "CallsDB.db";
 
         private readonly string _connectionString;
 
         private readonly string _dbPath;
 
-        //private readonly string _dpFolderPath;
+        private readonly IDbConfigProvider _configProvider;
 
-        public DatabaseContext()
+        public int Order => 1;
+
+        public bool IsReady { get; private set; }
+
+        public DatabaseContext(IDbConfigProvider configProvider)
         {
             _dbPath = Path.Combine(Application.persistentDataPath, DbName);
             _connectionString = $"URI=file:{_dbPath}";
-
-            EnsureDeleted();
-            EnsureCreated();
+            _configProvider = configProvider;
         }
 
-        private void EnsureDeleted()
+        public async Task Initialize()
+        {
+            if (_configProvider.AppConfig.Value.ClearAndSeedDb)
+            {
+                await EnsureDeleted();
+            }
+
+            await EnsureCreated();
+            IsReady = true;
+        }
+
+        private async Task EnsureDeleted()
         {
             if (File.Exists(_dbPath))
             {
@@ -42,7 +56,7 @@ namespace HC.DataAccess.Logic
                         "PRAGMA writable_schema = 0;",
                         "VACUUM;"
                     });
-                    ExecuteNonQuery(sql).GetAwaiter();
+                    await ExecuteNonQuery(sql);
                 }
                 catch (IOException e)
                 {
@@ -53,11 +67,17 @@ namespace HC.DataAccess.Logic
             }
         }
 
-        private void EnsureCreated()
+        private async Task EnsureCreated()
         {
             if (!File.Exists(_dbPath))
             {
-                File.Create(_dbPath);
+                using (var fs = new FileStream(_dbPath, FileMode.Create))
+                {
+                    fs.Flush();
+                    fs.Close();
+                    await Task.Delay(10);
+                }
+                //File.Create(_dbPath);
             }
         }
 
@@ -105,6 +125,7 @@ namespace HC.DataAccess.Logic
             {
 #if DEBUG || UNITY_EDITOR
                 Debug.LogError(e);
+                Debug.LogError($"SQL: \n {sqlCommand}");
 #endif
                 throw;
             }
@@ -128,6 +149,7 @@ namespace HC.DataAccess.Logic
             {
 #if DEBUG || UNITY_EDITOR
                 Debug.LogError(e);
+                Debug.LogError($"SQL: \n {sqlCommand}");
 #endif
                 throw;
             }

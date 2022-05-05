@@ -10,7 +10,7 @@ namespace HC.DiInstaller
     {
         public override void InstallBindings()
         {
-            Container.Bind<DatabaseContext>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DatabaseContext>().AsSingle();
             Container.BindInterfacesTo<EntityRepository>().AsSingle();
             Container.BindInterfacesTo<DatabaseSeedService>().AsSingle();
 
