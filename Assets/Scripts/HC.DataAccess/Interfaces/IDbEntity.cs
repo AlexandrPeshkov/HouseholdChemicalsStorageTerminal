@@ -1,4 +1,4 @@
-﻿namespace HC.DataAccess.Interfaces
+﻿namespace DataAccess.Interfaces
 {
     /// <summary>
     /// Сущность БД

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using HC.DataAccess.HC.DataAccess.Extensions;
-using HC.DataAccess.Interfaces;
-using HC.Interfaces.Services;
+using DataAccess.DataAccess.Extensions;
+using DataAccess.Interfaces;
+using Interfaces.Services;
 using Mono.Data.Sqlite;
 using UnityEngine;
 
-namespace HC.DataAccess.Logic
+namespace DataAccess.Logic
 {
     public class DatabaseContext : IAsyncInitializable
     {

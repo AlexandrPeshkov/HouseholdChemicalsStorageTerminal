@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace HC.Core.Services
+namespace Core.Services
 {
     public static class ThreadSafeRandom
     {

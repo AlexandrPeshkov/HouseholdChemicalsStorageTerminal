@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using HC.DataAccess;
-using HC.Interfaces.Services;
-using HC.UI.ViewModels;
+using Core.Logic;
+using DataAccess;
+using Interfaces.Services;
+using UI.ViewModels;
 using UnityEngine;
 
-namespace HC.Core.Services
+namespace Core.Services
 {
     public class PaymentService : IPaymentService
     {
-        private readonly IEntityRepository _entityRepository;
+        private readonly EntityRepository _entityRepository;
 
-        public PaymentService(IEntityRepository entityRepository)
+        public PaymentService(EntityRepository entityRepository)
         {
             _entityRepository = entityRepository;
         }
@@ -27,32 +29,39 @@ namespace HC.Core.Services
 
         public async Task<IReadOnlyCollection<InvoiceViewModel>> GetAllInvoices()
         {
-            var invoices = await _entityRepository.Invoices.All();
+            IReadOnlyCollection<Invoice> invoices = await _entityRepository.Invoices.All();
+            IReadOnlyCollection<User> users = await _entityRepository.Users.All();
 
             var invoiceViewModels = new List<InvoiceViewModel>(invoices.Count);
 
-            foreach (var invoice in invoices)
+            foreach (Invoice invoice in invoices)
             {
-                var callLog = await _entityRepository.CallLogs.Get(invoice.CallLogId);
-                var userFrom = await _entityRepository.Users.Get(callLog.UserIdFrom);
-                var userTo = await _entityRepository.Users.Get(callLog.UserIdTo);
-                var cityFrom = await _entityRepository.Cities.Get(userFrom.CityId);
-                var cityTo = await _entityRepository.Cities.Get(userTo.CityId);
+                CallLog callLog = await _entityRepository.CallLogs.Get(invoice.CallLogId);
 
-                var cost = await CalcCost(callLog.Duration, cityFrom.Id, cityTo.Id);
+                ProviderAccount userFromAccount = await _entityRepository.ProviderAccounts.Get(callLog.ProviderAccountIdFrom);
+                ProviderAccount userToAccount = await _entityRepository.ProviderAccounts.Get(callLog.ProviderAccountIdTo);
+
+                Provider providerFrom = await _entityRepository.Providers.Get(userFromAccount.ProviderId);
+                
+                District district = await _entityRepository.Districts.Get(callLog.DistrictId);
+
+                User userFrom = users.FirstOrDefault(x => x.ProviderAccountId == userFromAccount.ProviderId);
+                User userTo = users.FirstOrDefault(x => x.ProviderAccountId == userToAccount.ProviderId);
+                
+                float cost = await CalcCost(callLog.Duration, userFromAccount, userToAccount);
 
                 var invoiceView = new InvoiceViewModel()
                 {
                     InvoiceId = invoice.Id,
                     UserFrom = userFrom.Name,
-                    UserFromNumber = userFrom.Number,
+                    UserFromNumber = userFromAccount.Number,
                     UserTo = userTo.Name,
-                    UserToNumber = userTo.Number,
+                    UserToNumber = userToAccount.Number,
                     Date = callLog.Date,
-                    CityFrom = cityFrom.Name,
-                    CityTo = cityTo.Name,
+                    DistrictName = district.Name,
                     Status = invoice.IsPaid,
-                    Cost = cost
+                    Cost = cost,
+                    ProviderFromName = providerFrom.Name
                 };
                 invoiceViewModels.Add(invoiceView);
             }
@@ -60,32 +69,18 @@ namespace HC.Core.Services
             return invoiceViewModels;
         }
 
-        private async Task<float> CalcCost(float seconds, int cityFrom, int cityTo)
+        private async Task<float> CalcCost(float seconds, ProviderAccount from, ProviderAccount to)
         {
-            var argParam = Expression.Parameter(typeof(Rate), "s");
-            Expression fromProp = Expression.Property(argParam, nameof(Rate.CityIdFrom));
-            Expression toProp = Expression.Property(argParam, nameof(Rate.CityIdTo));
+            var rates = await _entityRepository.ProviderRates.All();
 
-            var fromVal = Expression.Constant(cityFrom);
-            var toVal = Expression.Constant(cityTo);
+            var rateEntity = rates
+                .FirstOrDefault(x => 
+                    x.ProviderId == from.ProviderId 
+                    && x.CallingAccountTypeId == to.AccountTypeId);
 
-            Expression e1 = Expression.Equal(fromProp, fromVal);
-            Expression e2 = Expression.Equal(toProp, toVal);
-            var andExp = Expression.AndAlso(e1, e2);
+            var rate = rateEntity?.Rate ?? 0f;
 
-            var lambda = Expression.Lambda<Func<Rate, bool>>(andExp, argParam);
-
-            var rate = await _entityRepository.Rates.FirstOrDefault(lambda);
-
-            if (rate == null)
-            {
-                Debug.LogError($"Null rate {cityFrom} {cityTo}");
-                return 0f;
-            }
-
-            var cost = rate.CostPerMinute * (seconds / 60f);
-
-            return cost;
+            return rate;
         }
     }
 }

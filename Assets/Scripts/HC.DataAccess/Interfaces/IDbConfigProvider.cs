@@ -1,7 +1,7 @@
-using HC.Data.HC.Data;
+using Data.Data;
 using UniRx;
 
-namespace HC.DataAccess.Interfaces
+namespace DataAccess.Interfaces
 {
     public interface IDbConfigProvider
     {

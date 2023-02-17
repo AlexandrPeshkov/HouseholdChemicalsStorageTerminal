@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace HC.DiInstaller
+namespace DiInstaller
 {
     public class ProjectContextCoreInstaller : MonoInstaller<ProjectContextCoreInstaller>
     {

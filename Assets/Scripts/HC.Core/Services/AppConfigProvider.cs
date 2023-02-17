@@ -1,13 +1,13 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using HC.Data.HC.Data;
-using HC.DataAccess.Interfaces;
-using HC.Interfaces.Services;
+using Data.Data;
+using DataAccess.Interfaces;
+using Interfaces.Services;
 using UniRx;
 using UnityEngine;
 
-namespace HC.Core.Services
+namespace Core.Services
 {
     public class AppConfigProvider : IAsyncInitializable, IDbConfigProvider
     {

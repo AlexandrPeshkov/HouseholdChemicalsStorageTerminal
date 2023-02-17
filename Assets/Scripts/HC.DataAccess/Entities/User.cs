@@ -1,13 +1,13 @@
-﻿using HC.DataAccess.Models;
+﻿using DataAccess.Models;
 
-namespace HC.DataAccess
+namespace DataAccess
 {
     public class User : BaseDbEntity
     {
         public string Name { get; set; }
 
-        public string Number { get; set; }
-
         public int CityId { get; set; }
+        
+        public int ProviderAccountId { get; set; }
     }
 }

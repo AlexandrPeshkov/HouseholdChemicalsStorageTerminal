@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace HC.DataAccess.HC.DataAccess.Extensions
+namespace DataAccess.DataAccess.Extensions
 {
     public static class ReflectionExtensions
     {

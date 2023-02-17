@@ -1,8 +1,9 @@
 using System;
+using DataAccess;
 using UnityEngine;
 using Random = System.Random;
 
-namespace HC.Core.Extensions
+namespace Core.Extensions
 {
     public static class RandomExtensions
     {
@@ -37,9 +38,30 @@ namespace HC.Core.Extensions
             return date;
         }
 
-        public static string PhoneNumber(this Random random)
+        public static string MobilePhoneNumber(this Random random)
         {
             return $"+7({random.Range(234, 999)})-{random.Range(111, 999)}-{random.Range(10, 99)}-{random.Range(10, 99)}";
+        }
+        
+        public static string LocalPhoneNumber(this Random random)
+        {
+            return $"+7(863) {random.Range(234, 999)}{random.Range(11, 99)}-{random.Range(11, 99)}";
+        }
+
+        public static string ServicePhoneNumber(this Random random)
+        {
+            return $"0{random.Range(1, 4)}";
+        }
+
+        public static string RandomNumberFor(this Random random, AccountTypeEnum accountTypeEnum)
+        {
+            switch (accountTypeEnum)
+            {
+                case AccountTypeEnum.Home: return LocalPhoneNumber(random);
+                case AccountTypeEnum.Mobile: return MobilePhoneNumber(random);
+                case AccountTypeEnum.Service: return ServicePhoneNumber(random);
+                default: return null;
+            }
         }
         
         /// <summary>

@@ -1,8 +1,8 @@
-using HC.DataAccess.Interfaces;
-using HC.DataAccess.Logic;
+using DataAccess.Interfaces;
+using DataAccess.Logic;
 using Zenject;
 
-namespace HC.DiInstaller.HC.DiInstaller.Extensions
+namespace DiInstaller.DiInstaller.Extensions
 {
     public static class DiExtensions
     {

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using BS.UI.Services;
 using Cysharp.Threading.Tasks;
-using HC.Interfaces.Services;
-using HC.UI.ViewModels;
+using Interfaces.Services;
+using UI.ViewModels;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace HC.UI.Elements
+namespace UI.Elements
 {
     public class UserCallLogsTable : MonoBehaviour, IAsyncInitializable
     {
@@ -122,8 +122,8 @@ namespace HC.UI.Elements
                     || x.UserTo.Contains(mask)
                     || x.UserFromNumber.Contains(mask)
                     || x.UserToNumber.Contains(mask)
-                    || x.CityFrom.Contains(mask)
-                    || x.CityTo.Contains(mask));
+                    || x.DistrictName.Contains(mask)
+                    || x.ProviderFromName.Contains(mask));
             }
 
             return result;

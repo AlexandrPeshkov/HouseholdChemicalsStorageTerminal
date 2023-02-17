@@ -1,13 +1,13 @@
 ﻿using BS.UI.Services;
-using HC.Core;
-using HC.Core.Services;
-using HC.Interfaces.Services;
-using HC.UI.Elements;
-using HC.UI.Elements.Popups;
+using Core;
+using Core.Services;
+using Interfaces.Services;
+using UI.Elements;
+using UI.Elements.Popups;
 using UnityEngine;
 using Zenject;
 
-namespace HC.DiInstaller
+namespace DiInstaller
 {
     public class CoreSceneContextInstaller : MonoInstaller<CoreSceneContextInstaller>
     {

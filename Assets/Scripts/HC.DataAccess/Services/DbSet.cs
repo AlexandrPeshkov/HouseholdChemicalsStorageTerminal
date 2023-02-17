@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using HC.DataAccess.HC.DataAccess.Extensions;
-using HC.DataAccess.Interfaces;
+using DataAccess.DataAccess.Extensions;
+using DataAccess.Interfaces;
 using UnityEngine;
 
-namespace HC.DataAccess.Logic
+namespace DataAccess.Logic
 {
     public abstract class DbSet<TEntity> : IDbSet<TEntity>
         where TEntity : class, IDbEntity, new()
@@ -56,6 +56,19 @@ namespace HC.DataAccess.Logic
                 throw;
             }
         }
+        
+        private string CreateSql(TEntity entity)
+        {
+            var queryProperties = SqlReaderExtensions.ParseToQueryArgs(entity);
+
+            var names = string.Join(", ", queryProperties.Keys);
+            var values = string.Join(", ", queryProperties.Values);
+
+            var sql = $"INSERT INTO {TableName}({names})" +
+                $"\n VALUES ({values})";
+
+            return sql;
+        }
 
         public async Task<TEntity> Get(int id)
         {
@@ -98,20 +111,5 @@ namespace HC.DataAccess.Logic
         }
 
         protected abstract string CreateTableIfNotExistSql();
-
-        protected abstract string SelectWhereSql();
-
-        private string CreateSql(TEntity entity)
-        {
-            var queryProperties = SqlReaderExtensions.ParseToQueryArgs(entity);
-
-            var names = string.Join(", ", queryProperties.Keys);
-            var values = string.Join(", ", queryProperties.Values);
-
-            var sql = $"INSERT INTO {TableName}({names})" +
-                $"\n VALUES ({values})";
-
-            return sql;
-        }
     }
 }

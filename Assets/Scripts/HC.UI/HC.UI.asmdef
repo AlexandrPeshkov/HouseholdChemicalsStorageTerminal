@@ -1,13 +1,13 @@
 {
-    "name": "HC.UI",
-    "rootNamespace": "HC.UI",
+    "name": "UI",
+    "rootNamespace": "UI",
     "references": [
-        "HC.Interfaces",
+        "Interfaces",
         "Unity.TextMeshPro",
         "Zenject",
-        "HC.Data",
         "UniTask",
         "UniRx",
+        "HC.Data",
         "HC.Common.Interfaces"
     ],
     "includePlatforms": [],

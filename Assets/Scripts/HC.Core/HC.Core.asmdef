@@ -4,12 +4,12 @@
     "references": [
         "Zenject",
         "HC.DataAccess",
-        "HC.Interfaces",
         "UniRx",
-        "HC.UI",
         "HC.Data",
         "UniTask",
-        "HC.Common.Interfaces"
+        "HC.Common.Interfaces",
+        "Interfaces",
+        "UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

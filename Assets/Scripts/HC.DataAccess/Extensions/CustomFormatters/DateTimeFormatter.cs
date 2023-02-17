@@ -1,6 +1,6 @@
 using System;
 
-namespace HC.DataAccess.Extensions.CustomFormatters
+namespace DataAccess.Extensions.CustomFormatters
 {
     public class DateTimeFormatter : BaseTypeFormatter<DateTime>
     {

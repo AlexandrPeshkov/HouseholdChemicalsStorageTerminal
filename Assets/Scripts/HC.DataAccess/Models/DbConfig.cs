@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace HC.Data.HC.Data
+namespace Data.Data
 {
     [Serializable]
     public class DbConfig

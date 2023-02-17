@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
-using HC.Core.Logic;
-using HC.DataAccess;
+using Core.Logic;
+using DataAccess;
 using JetBrains.Annotations;
 using UniRx;
 
-namespace HC.Core.Services
+namespace Core.Services
 {
     public class AuthorizationService
     {

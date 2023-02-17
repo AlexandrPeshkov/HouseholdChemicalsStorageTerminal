@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HC.UI.Elements
+namespace UI.Elements
 {
     public class CallLogsPanelFilter : MonoBehaviour
     {

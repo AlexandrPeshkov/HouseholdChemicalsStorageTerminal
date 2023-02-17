@@ -1,4 +1,4 @@
-namespace HC.DataAccess.Extensions.CustomFormatters
+namespace DataAccess.Extensions.CustomFormatters
 {
     public abstract class BaseTypeFormatter<T> : ICustomTypeFormatter
     {

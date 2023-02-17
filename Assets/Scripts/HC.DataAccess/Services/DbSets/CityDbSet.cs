@@ -1,6 +1,4 @@
-using System;
-
-namespace HC.DataAccess.Logic.DbSets
+namespace DataAccess.Logic.DbSets
 {
     public class CityDbSet : DbSet<City>
     {
@@ -16,15 +14,12 @@ namespace HC.DataAccess.Logic.DbSets
         {
             return $"CREATE TABLE IF NOT EXISTS \"{TableName}\" (" +
                 $"\"{nameof(City.Id)}\"	INTEGER NOT NULL UNIQUE," +
-                $"\"{nameof(City.Code)}\"INTEGER NOT NULL," +
+                $"\"{nameof(City.CountryId)}\"	INTEGER NOT NULL," +
+                $"\"{nameof(City.Code)}\"TEXT NOT NULL," +
                 $"\"{nameof(City.Name)}\" TEXT NOT NULL," +
+                $"FOREIGN KEY({nameof(City.CountryId)}) REFERENCES {CountryDbSet.Table}({nameof(Country.Id)})" +
                 $"PRIMARY KEY(\"{nameof(City.Id)}\" AUTOINCREMENT)" +
                 ");";
-        }
-
-        protected override string SelectWhereSql()
-        {
-            throw new NotImplementedException();
         }
     }
 }

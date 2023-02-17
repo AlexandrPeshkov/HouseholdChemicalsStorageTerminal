@@ -4,10 +4,10 @@ using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using HC.DataAccess.Extensions.CustomFormatters;
-using HC.DataAccess.Interfaces;
+using DataAccess.Extensions.CustomFormatters;
+using DataAccess.Interfaces;
 
-namespace HC.DataAccess.HC.DataAccess.Extensions
+namespace DataAccess.DataAccess.Extensions
 {
     public static class SqlReaderExtensions
     {

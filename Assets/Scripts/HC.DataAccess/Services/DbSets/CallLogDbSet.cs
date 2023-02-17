@@ -1,4 +1,4 @@
-﻿namespace HC.DataAccess.Logic.DbSets
+﻿namespace DataAccess.Logic.DbSets
 {
     public class CallLogDbSet : DbSet<CallLog>
     {
@@ -15,18 +15,15 @@
             return $"CREATE TABLE IF NOT EXISTS {TableName} (" +
                 $"{nameof(CallLog.Id)}	INTEGER NOT NULL UNIQUE," +
                 $"{nameof(CallLog.Duration)} REAL NOT NULL," +
-                $"{nameof(CallLog.UserIdFrom)} INTEGER NOT NULL," +
-                $"{nameof(CallLog.UserIdTo)} INTEGER NOT NULL," +
+                $"{nameof(CallLog.ProviderAccountIdFrom)} INTEGER NOT NULL," +
+                $"{nameof(CallLog.ProviderAccountIdTo)} INTEGER NOT NULL," +
+                $"{nameof(CallLog.DistrictId)} INTEGER NOT NULL," +
                 $"{nameof(CallLog.Date)} TEXT NOT NULL," +
                 $"PRIMARY KEY({nameof(CallLog.Id)} AUTOINCREMENT)," +
-                $"FOREIGN KEY({nameof(CallLog.UserIdFrom)}) REFERENCES {UserDbSet.Table}({nameof(User.Id)})" +
-                $"FOREIGN KEY({nameof(CallLog.UserIdTo)}) REFERENCES {UserDbSet.Table}({nameof(User.Id)})" +
+                $"FOREIGN KEY({nameof(CallLog.ProviderAccountIdFrom)}) REFERENCES {ProviderAccountDbSet.Table}({nameof(ProviderAccount.Id)})," +
+                $"FOREIGN KEY({nameof(CallLog.ProviderAccountIdTo)}) REFERENCES {ProviderAccountDbSet.Table}({nameof(ProviderAccount.Id)})," +
+                $"FOREIGN KEY({nameof(CallLog.DistrictId)}) REFERENCES {DistrictDbSet.Table}({nameof(District.Id)})" +
                 ");";
-        }
-
-        protected override string SelectWhereSql()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

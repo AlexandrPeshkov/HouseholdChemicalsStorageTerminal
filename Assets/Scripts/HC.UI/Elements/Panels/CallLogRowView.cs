@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Globalization;
-using HC.UI.Elements.Popups;
-using HC.UI.ViewModels;
+using UI.Elements.Popups;
+using UI.ViewModels;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace HC.UI.Elements
+namespace UI.Elements
 {
     public class CallLogRowView : MonoBehaviour
     {
@@ -19,12 +19,15 @@ namespace HC.UI.Elements
 
         [field: SerializeField]
         public TMP_Text UserTo { get; private set; }
+        
+        [field: SerializeField]
+        public TMP_Text UserFrom{ get; private set; }
 
         [field: SerializeField]
-        public TMP_Text UserFrom { get; private set; }
-
+        public TMP_Text District { get; private set; }
+        
         [field: SerializeField]
-        public TMP_Text CityFrom { get; private set; }
+        public TMP_Text Provider { get; private set; }
 
         [field: SerializeField]
         public TMP_Text CityTo { get; private set; }
@@ -59,8 +62,8 @@ namespace HC.UI.Elements
             UserTo.text = $"{viewModel.UserToNumber} \n {viewModel.UserTo}";
             UserFrom.text = $"{viewModel.UserFromNumber} \n {viewModel.UserFrom}";
 
-            CityFrom.text = viewModel.CityFrom;
-            CityTo.text = viewModel.CityTo;
+            District.text = viewModel.DistrictName;
+            Provider.text = viewModel.ProviderFromName;
 
             Cost.text = viewModel.Cost.ToString("N2", _ruCulture);
 

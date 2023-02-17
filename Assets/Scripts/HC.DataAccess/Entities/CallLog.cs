@@ -1,16 +1,18 @@
 ﻿using System;
-using HC.DataAccess.Models;
+using DataAccess.Models;
 
-namespace HC.DataAccess
+namespace DataAccess
 {
     public class CallLog : BaseDbEntity
     {
-        public int UserIdFrom { get; set; }
+        public int ProviderAccountIdFrom { get; set; }
 
-        public int UserIdTo { get; set; }
+        public int ProviderAccountIdTo { get; set; }
 
         public float Duration { get; set; }
 
         public DateTime Date { get; set; }
+
+        public int DistrictId { get; set; }
     }
 }

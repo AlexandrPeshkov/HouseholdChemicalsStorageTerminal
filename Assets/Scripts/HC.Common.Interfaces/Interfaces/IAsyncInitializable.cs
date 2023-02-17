@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace HC.Interfaces.Services
+namespace Interfaces.Services
 {
     public interface IAsyncInitializable
     {

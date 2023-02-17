@@ -1,17 +1,17 @@
-using HC.Core;
-using HC.Core.Logic;
-using HC.DataAccess.Logic;
-using HC.DataAccess.Logic.DbSets;
+using Core;
+using Core.Logic;
+using DataAccess.Logic;
+using DataAccess.Logic.DbSets;
 using Zenject;
 
-namespace HC.DiInstaller
+namespace DiInstaller
 {
     public class DbInstaller : Installer<DbInstaller>
     {
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<DatabaseContext>().AsSingle();
-            Container.BindInterfacesTo<EntityRepository>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EntityRepository>().AsSingle();
             Container.BindInterfacesTo<DatabaseSeedService>().AsSingle();
 
             BindDbSets();
@@ -19,11 +19,17 @@ namespace HC.DiInstaller
 
         private void BindDbSets()
         {
-            Container.BindInterfacesTo<CityDbSet>().AsSingle();
-            Container.BindInterfacesTo<UserDbSet>().AsSingle();
-            Container.BindInterfacesTo<RateDbSet>().AsSingle();
-            Container.BindInterfacesTo<CallLogDbSet>().AsSingle();
-            Container.BindInterfacesTo<InvoiceDbSet>().AsSingle();
+            Container.Bind<CityDbSet>().AsSingle();
+            Container.Bind<UserDbSet>().AsSingle();
+            Container.Bind<CallLogDbSet>().AsSingle();
+            Container.Bind<InvoiceDbSet>().AsSingle();
+            
+            Container.Bind<AccountTypeDbSet>().AsSingle();
+            Container.Bind<CountryDbSet>().AsSingle();
+            Container.Bind<DistrictDbSet>().AsSingle();
+            Container.Bind<ProviderAccountDbSet>().AsSingle();
+            Container.Bind<ProviderDbSet>().AsSingle();
+            Container.Bind<ProviderRateDbSet>().AsSingle();
         }
     }
 }

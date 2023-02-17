@@ -1,4 +1,4 @@
-﻿namespace HC.DataAccess.Logic.DbSets
+﻿namespace DataAccess.Logic.DbSets
 {
     public class UserDbSet : DbSet<User>
     {
@@ -15,16 +15,12 @@
             return $"CREATE TABLE IF NOT EXISTS {TableName} (" +
                 $"{nameof(User.Id)}	INTEGER NOT NULL UNIQUE," +
                 $"{nameof(User.Name)} TEXT NOT NULL," +
-                $"{nameof(User.Number)} TEXT NOT NULL," +
                 $"{nameof(User.CityId)}	INTEGER NOT NULL," +
+                $"{nameof(User.ProviderAccountId)}	INTEGER NOT NULL," +
                 $"PRIMARY KEY({nameof(User.Id)} AUTOINCREMENT)," +
                 $"FOREIGN KEY({nameof(User.CityId)}) REFERENCES {CityDbSet.Table}({nameof(City.Id)})" +
+                $"FOREIGN KEY({nameof(User.ProviderAccountId)}) REFERENCES {ProviderAccountDbSet.Table}({nameof(ProviderAccount.Id)})" +
                 ");";
-        }
-
-        protected override string SelectWhereSql()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

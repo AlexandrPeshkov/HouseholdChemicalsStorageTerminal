@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace HC.DataAccess.Interfaces
+namespace DataAccess.Interfaces
 {
     public interface IDbSet<TEntity> where TEntity : class, IDbEntity
     {
         Task<TEntity> FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
-
-        Task<IEnumerable<TEntity>> Where(Func<TEntity, bool> predicate);
 
         Task<TEntity> Create(TEntity newEntity);
 

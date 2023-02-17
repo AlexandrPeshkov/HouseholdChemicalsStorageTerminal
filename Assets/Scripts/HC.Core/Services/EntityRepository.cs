@@ -1,33 +1,54 @@
 using System.Threading.Tasks;
-using HC.DataAccess;
-using HC.DataAccess.Interfaces;
-using HC.Interfaces.Services;
+using DataAccess.Logic.DbSets;
+using Interfaces.Services;
 
-namespace HC.Core.Logic
+namespace Core.Logic
 {
-    public class EntityRepository : IEntityRepository, IAsyncInitializable
+    public class EntityRepository : IAsyncInitializable
     {
-        public IDbSet<City> Cities { get; }
+        public CityDbSet Cities { get; }
+        
+        public CountryDbSet Countries { get; }
+        
+        public DistrictDbSet Districts { get; }
 
-        public IDbSet<User> Users { get; }
+        public UserDbSet Users { get; }
 
-        public IDbSet<Rate> Rates { get; }
+        public CallLogDbSet CallLogs { get; }
 
-        public IDbSet<CallLog> CallLogs { get; }
+        public InvoiceDbSet Invoices { get; }
+        
+        public AccountTypeDbSet AccountTypes { get; }
+        
+        public ProviderDbSet Providers { get; }
+        
+        public ProviderAccountDbSet ProviderAccounts { get; }
+        
+        public ProviderRateDbSet ProviderRates { get; }
 
-        public IDbSet<Invoice> Invoices { get; }
-
-        public EntityRepository(IDbSet<City> cities,
-            IDbSet<User> users,
-            IDbSet<Rate> rates,
-            IDbSet<CallLog> callLogs,
-            IDbSet<Invoice> invoices)
+        public EntityRepository(
+            CityDbSet cities,
+            UserDbSet users,
+            AccountTypeDbSet accountTypes,
+            CallLogDbSet callLogs,
+            InvoiceDbSet invoices,
+            ProviderDbSet providers,
+            ProviderAccountDbSet providerAccounts,
+            CountryDbSet countries,
+            DistrictDbSet districts,
+            ProviderRateDbSet providerRates
+            )
         {
             Cities = cities;
             Users = users;
-            Rates = rates;
+            AccountTypes = accountTypes;
             CallLogs = callLogs;
             Invoices = invoices;
+            Providers = providers;
+            ProviderAccounts = providerAccounts;
+            Countries = countries;
+            Districts = districts;
+            ProviderRates = providerRates;
         }
 
         public int Order => 2;
@@ -36,12 +57,20 @@ namespace HC.Core.Logic
 
         public async Task Initialize()
         {
+            await Countries.EnsureCreated();
             await Cities.EnsureCreated();
-            await Users.EnsureCreated();
-            await Rates.EnsureCreated();
+            await Districts.EnsureCreated();
+            
+            await AccountTypes.EnsureCreated();
+            await Providers.EnsureCreated();
+            await ProviderRates.EnsureCreated();
+            
+            await ProviderAccounts.EnsureCreated();
+            
             await CallLogs.EnsureCreated();
             await Invoices.EnsureCreated();
-
+            
+            await Users.EnsureCreated();
             IsReady = true;
         }
     }

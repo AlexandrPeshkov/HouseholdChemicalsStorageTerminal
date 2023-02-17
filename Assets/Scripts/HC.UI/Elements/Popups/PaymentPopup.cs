@@ -1,12 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using BS.UI.Services;
-using HC.Interfaces.Services;
+using Interfaces.Services;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace HC.UI.Elements.Popups
+namespace UI.Elements.Popups
 {
     public class PaymentPopup : MonoBehaviour
     {

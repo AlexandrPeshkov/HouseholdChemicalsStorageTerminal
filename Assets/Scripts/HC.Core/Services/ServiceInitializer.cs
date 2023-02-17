@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BS.UI.Services;
-using HC.Interfaces.Services;
+using Interfaces.Services;
 using Zenject;
 
-namespace HC.Core
+namespace Core
 {
     public class ServiceInitializer : IServiceInitializer, IInitializable
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using HC.Core.Services;
+using Core.Services;
 
-namespace HC.Core.Extensions
+namespace Core.Extensions
 {
     public static class CollectionExtensions
     {

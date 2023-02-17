@@ -1,4 +1,4 @@
-﻿namespace HC.DataAccess.Logic.DbSets
+﻿namespace DataAccess.Logic.DbSets
 {
     public class InvoiceDbSet : DbSet<Invoice>
     {
@@ -17,11 +17,6 @@
                 $"PRIMARY KEY({nameof(Invoice.Id)} AUTOINCREMENT)," +
                 $"FOREIGN KEY({nameof(Invoice.CallLogId)}) REFERENCES {CallLogDbSet.Table}({nameof(CallLog.Id)})" +
                 ");";
-        }
-
-        protected override string SelectWhereSql()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

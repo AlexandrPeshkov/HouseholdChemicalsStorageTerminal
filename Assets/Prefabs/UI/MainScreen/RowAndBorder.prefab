@@ -421,7 +421,8 @@ MonoBehaviour:
   <Date>k__BackingField: {fileID: 5545395341691829748}
   <UserTo>k__BackingField: {fileID: 5832894702387935833}
   <UserFrom>k__BackingField: {fileID: 5545395342095607842}
-  <CityFrom>k__BackingField: {fileID: 5545395342530687904}
+  <District>k__BackingField: {fileID: 5545395342530687904}
+  <Provider>k__BackingField: {fileID: 5545395341700460375}
   <CityTo>k__BackingField: {fileID: 5545395341700460375}
   <Cost>k__BackingField: {fileID: 5545395342054464857}
   <StatusText>k__BackingField: {fileID: 5545395341196717616}
@@ -1083,7 +1084,7 @@ GameObject:
   - component: {fileID: 5545395341579733276}
   - component: {fileID: 5545395341579733279}
   m_Layer: 0
-  m_Name: CityTo
+  m_Name: Provider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1419,7 +1420,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 18
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1614,7 +1615,7 @@ GameObject:
   - component: {fileID: 5545395341941762790}
   - component: {fileID: 5545395341941762793}
   m_Layer: 0
-  m_Name: CityFrom
+  m_Name: District
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2018,7 +2019,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
+  m_fontSize: 18
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2248,7 +2249,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 18
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2729,7 +2730,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
+  m_fontSize: 18
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1

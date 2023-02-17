@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HC.UI.ViewModels;
+using UI.ViewModels;
 
-namespace HC.Interfaces.Services
+namespace Interfaces.Services
 {
     public interface IPaymentService
     {

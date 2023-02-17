@@ -4,9 +4,9 @@
     "references": [
         "HC.Core",
         "HC.DataAccess",
-        "HC.Interfaces",
-        "HC.UI",
-        "Zenject"
+        "Zenject",
+        "UI",
+        "Interfaces"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

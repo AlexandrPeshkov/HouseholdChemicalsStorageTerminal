@@ -1,6 +1,6 @@
-﻿using HC.DataAccess.Models;
+﻿using DataAccess.Models;
 
-namespace HC.DataAccess
+namespace DataAccess
 {
     /// <summary>
     /// Счёт

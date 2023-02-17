@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace HC.DataAccess.HC.DataAccess.Extensions
+namespace DataAccess.DataAccess.Extensions
 {
  public class QueryTranslator : ExpressionVisitor
 {

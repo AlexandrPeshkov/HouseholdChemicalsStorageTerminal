@@ -1,6 +1,6 @@
-﻿using HC.DataAccess.Interfaces;
+﻿using DataAccess.Interfaces;
 
-namespace HC.DataAccess.Models
+namespace DataAccess.Models
 {
     public class BaseDbEntity : IDbEntity
     {
